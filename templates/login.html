@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediKart Login & Signup</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <!-- Custom login style (blue → MediKart green palette) -->
+  <style>
+    /* Container with 3-D depth */
+    .container {
+      max-width: 420px;
+      background: linear-gradient(145deg,#064e3b 0%,#065f46 100%);
+      border-radius: 28px;
+      padding: 44px 52px;
+      border: 1px solid rgba(255,255,255,.05);
+      box-shadow:
+        0 10px 25px rgba(0,0,0,.35),
+        0 1px 4px rgba(255,255,255,.08) inset;
+      margin: 40px auto;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .container:hover {
+      transform: translateY(-6px);
+      box-shadow:
+        0 16px 40px rgba(0,0,0,.45),
+        0 1px 4px rgba(255,255,255,.05) inset;
+    }
+
+    .heading {
+      text-align: center;
+      font-weight: 800;
+      font-size: 38px;
+      color: #ffffff;
+      text-shadow: 0 2px 4px rgba(0,0,0,.3);
+    }
+
+    .form .input {
+      width: 100%;
+      background: #0f172a;
+      color: #e2e8f0;
+      border: none;
+      padding: 18px 24px;
+      border-radius: 18px;
+      margin-top: 20px;
+      box-shadow:
+        0 4px 10px rgba(0,0,0,.4) inset,
+        0 -2px 4px rgba(255,255,255,.05) inset;
+      border-inline: 1px solid rgba(255,255,255,.06);
+    }
+
+    .form .input:focus {
+      outline: none;
+      border-inline: 1px solid #10b981;
+    }
+
+    .form .forgot-password a {
+      font-size: 11px;
+      color: #34d399;
+      text-decoration: none;
+    }
+
+    .form .login-button {
+      display: block;
+      width: 100%;
+      font-weight: 600;
+      background: linear-gradient(90deg,#10b981 0%,#059669 100%);
+      color: #fff;
+      padding-block: 18px;
+      margin: 32px auto 6px;
+      border-radius: 26px;
+      box-shadow: 0 8px 20px rgba(0,0,0,.45);
+      border: none;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .form .login-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0,0,0,.55);
+    }
+    .form .login-button:active {
+      transform: translateY(0);
+      box-shadow: 0 8px 16px rgba(0,0,0,.45);
+    }
+    /* Social buttons */
+    .social-button { background: linear-gradient(45deg, #166534 0%, #047857 100%); }
+    .social-button .svg { fill:white; }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+  <div class="bg-white rounded shadow-lg max-w-md w-full p-6 space-y-10">
+    <!-- Tabs -->
+    <div class="flex justify-around border-b pb-4">
+      <button id="loginTab" class="text-green-600 font-semibold border-b-2 border-green-600">Login</button>
+      <button id="signupTab" class="text-gray-600 hover:text-green-600">Sign Up</button>
+    </div>
+
+    <!-- New styled login container -->
+    <div class="container">
+      <div class="heading">Sign In</div>
+      <form id="loginForm" class="form">
+        <input id="email" name="email" type="email" class="input" placeholder="E-mail" required />
+        <input id="password" name="password" type="password" class="input" placeholder="Password" required />
+        <span class="forgot-password"><a href="/forgotpassword">Forgot Password ?</a></span>
+        <input type="submit" value="Sign In" class="login-button" />
+      </form>
+    </div>
+
+    <!-- Signup Form -->
+    <form id="signupForm" class="space-y-4 hidden">
+      <div>
+        <label class="block text-gray-700 font-medium">Full Name</label>
+        <input type="text" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-400" placeholder="John Doe">
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium">Email</label>
+        <input type="email" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-400" placeholder="you@example.com">
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium">Password</label>
+        <input type="password" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-400" placeholder="Create a password">
+      </div>
+      <button type="submit" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition">Sign Up</button>
+    </form>
+  </div>
+
+  <script>
+    const loginTab = document.getElementById('loginTab');
+    const signupTab = document.getElementById('signupTab');
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+
+    loginTab.addEventListener('click', () => {
+      loginForm.classList.remove('hidden');
+      signupForm.classList.add('hidden');
+      loginTab.classList.add('text-green-600', 'border-b-2', 'border-green-600');
+      signupTab.classList.remove('text-green-600', 'border-b-2', 'border-green-600');
+    });
+
+    signupTab.addEventListener('click', () => {
+      loginForm.classList.add('hidden');
+      signupForm.classList.remove('hidden');
+      signupTab.classList.add('text-green-600', 'border-b-2', 'border-green-600');
+      loginTab.classList.remove('text-green-600', 'border-b-2', 'border-green-600');
+    });
+
+    // ----------------- Firebase Auth Integration -----------------
+    // Your Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAzRwr8d3MQykyfVu6KQKRsq91Hdh1wdso",
+      authDomain: "login-example-ae44a.firebaseapp.com",
+      projectId: "login-example-ae44a",
+      storageBucket: "login-example-ae44a.firebasestorage.app",
+      messagingSenderId: "985788201459",
+      appId: "1:985788201459:web:2bc7b85aeb14896744fa86",
+      measurementId: "G-V8LLZCNY22"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db   = firebase.firestore();
+
+    // Login handler
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = loginForm.querySelector('input[type="email"]').value.trim();
+      const password = loginForm.querySelector('input[type="password"]').value;
+
+      try {
+        const { user } = await auth.signInWithEmailAndPassword(email, password);
+        // Fetch profile from Firestore (if exists) and cache
+        const snap = await db.collection('users').doc(user.uid).get();
+        const data = snap.data() || {};
+        const profile = {
+          name: data.name || user.displayName || 'User',
+          email: user.email,
+          phone: data.phone || user.phoneNumber || '',
+          avatar: data.avatar || user.photoURL || `https://i.pravatar.cc/150?u=${user.uid}`
+        };
+        localStorage.setItem('user', JSON.stringify(profile));
+        alert('Login successful!');
+        window.location.href = '/index';
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+
+    // Signup handler
+    signupForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = signupForm.querySelector('input[type="text"]').value.trim();
+      const email = signupForm.querySelector('input[type="email"]').value.trim();
+      const password = signupForm.querySelector('input[type="password"]').value;
+
+      try {
+        const { user } = await auth.createUserWithEmailAndPassword(email, password);
+        await user.updateProfile({ displayName: name });
+
+        // Store profile in Firestore
+        await db.collection('users').doc(user.uid).set({
+          name,
+          email,
+          phone: '',
+          avatar: `https://i.pravatar.cc/150?u=${user.uid}`
+        });
+
+        const profile = { name, email, phone: '', avatar: `https://i.pravatar.cc/150?u=${user.uid}` };
+        localStorage.setItem('user', JSON.stringify(profile));
+        alert('Account created successfully!');
+        window.location.href = '/index';
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+  </script>
+</body>
+</html>

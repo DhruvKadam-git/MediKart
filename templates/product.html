@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Listing - MediKart</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+
+  <!-- Navbar -->
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Top Navbar -->
+<nav class="bg-white shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
+
+    <!-- Logo + Location -->
+    <div class="flex items-center space-x-4">
+      <a href="#" class="text-xl font-bold text-green-600">MediKart</a>
+      <div class="hidden sm:flex items-center text-sm text-gray-600 space-x-1">
+        <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M5.05 6.05a7 7 0 119.9 0c2.73 2.73-3.95 10.68-4.95 11.68-1-1-7.68-8.95-4.95-11.68zM10 11a2 2 0 100-4 2 2 0 000 4z"/>
+        </svg>
+        <span>Select Location</span>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="flex-1 mx-4">
+      <div class="relative">
+        <input type="text" placeholder="Search for medicines..." class="w-full border rounded-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-green-500 focus:outline-none">
+        <svg class="w-5 h-5 absolute left-3 top-2.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.35 4.35a7.5 7.5 0 0012.3 12.3z"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Cart + Login -->
+    <div class="flex items-center space-x-4">
+      <a href="#" class="relative text-gray-600 hover:text-green-600">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path d="M3 3h2l.4 2M7 13h10l4-8H5.4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <circle cx="9" cy="19" r="1"/>
+          <circle cx="20" cy="19" r="1"/>
+        </svg>
+        <span class="absolute top-0 right-0 inline-flex items-center justify-center px-1 text-xs font-bold text-white bg-green-500 rounded-full">2</span>
+      </a>
+      <a href="#" class="text-sm font-semibold text-white bg-green-600 px-4 py-1.5 rounded-full hover:bg-green-700">Login</a>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Main Layout -->
+  <main class="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row gap-6">
+
+    <!-- Filter Sidebar -->
+<aside class="w-full md:w-64 bg-white rounded-xl p-4 shadow-md sticky top-20 h-fit">
+    <h2 class="text-lg font-bold text-gray-800 mb-4">Filters</h2>
+  
+    <!-- Category Filter -->
+    <div class="mb-6">
+      <h3 class="text-sm font-semibold text-gray-700 mb-2">Category</h3>
+      <ul class="space-y-1 text-sm text-gray-600">
+        <li><label class="flex items-center"><input type="checkbox" class="form-checkbox text-green-600 mr-2"> Fever</label></li>
+        <li><label class="flex items-center"><input type="checkbox" class="form-checkbox text-green-600 mr-2"> Cold & Cough</label></li>
+        <li><label class="flex items-center"><input type="checkbox" class="form-checkbox text-green-600 mr-2"> Diabetes</label></li>
+        <li><label class="flex items-center"><input type="checkbox" class="form-checkbox text-green-600 mr-2"> Wellness</label></li>
+      </ul>
+    </div>
+  
+    <!-- Brand Filter -->
+    <div class="mb-6">
+      <h3 class="text-sm font-semibold text-gray-700 mb-2">Brand</h3>
+      <ul class="space-y-1 text-sm text-gray-600">
+        <li><label class="flex items-center"><input type="checkbox" class="form-checkbox text-green-600 mr-2"> Cipla</label></li>
+        <li><label class="flex items-center"><input type="checkbox" class="form-checkbox text-green-600 mr-2"> Sun Pharma</label></li>
+        <li><label class="flex items-center"><input type="checkbox" class="form-checkbox text-green-600 mr-2"> Himalaya</label></li>
+        <li><label class="flex items-center"><input type="checkbox" class="form-checkbox text-green-600 mr-2"> Dr. Reddy's</label></li>
+      </ul>
+    </div>
+  
+    <!-- Price Range Filter -->
+    <div class="mb-6">
+      <h3 class="text-sm font-semibold text-gray-700 mb-2">Price Range</h3>
+      <ul class="space-y-1 text-sm text-gray-600">
+        <li><label class="flex items-center"><input type="radio" name="price" class="form-radio text-green-600 mr-2"> Below ₹100</label></li>
+        <li><label class="flex items-center"><input type="radio" name="price" class="form-radio text-green-600 mr-2"> ₹100 - ₹300</label></li>
+        <li><label class="flex items-center"><input type="radio" name="price" class="form-radio text-green-600 mr-2"> ₹300 - ₹500</label></li>
+        <li><label class="flex items-center"><input type="radio" name="price" class="form-radio text-green-600 mr-2"> Above ₹500</label></li>
+      </ul>
+    </div>
+  
+    <!-- Delivery Time -->
+    <div class="mb-6">
+      <h3 class="text-sm font-semibold text-gray-700 mb-2">Delivery Time</h3>
+      <ul class="space-y-1 text-sm text-gray-600">
+        <li><label class="flex items-center"><input type="checkbox" class="form-checkbox text-green-600 mr-2"> Within 10 mins</label></li>
+        <li><label class="flex items-center"><input type="checkbox" class="form-checkbox text-green-600 mr-2"> Same Day</label></li>
+        <li><label class="flex items-center"><input type="checkbox" class="form-checkbox text-green-600 mr-2"> 2-3 Days</label></li>
+      </ul>
+    </div>
+  
+    <!-- Apply Filters -->
+    <button class="w-full bg-green-600 text-white py-2 rounded-full text-sm hover:bg-green-700 transition">
+      Apply Filters
+    </button>
+  </aside>
+  
+
+    <!-- Product Grid -->
+    <section class="flex-1 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+        <!-- Product Card -->
+        <div class="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition cursor-pointer">
+          <img src="https://cdn.pixabay.com/photo/2017/03/07/02/49/medicine-2121532_960_720.jpg" alt="Paracetamol 500mg" class="w-full h-32 object-cover rounded mb-3" />
+          <h3 class="text-sm font-semibold text-gray-700">Paracetamol 500mg</h3>
+          <p class="text-green-600 font-semibold mt-1">₹20 <span class="line-through text-gray-400 text-xs ml-1">₹25</span></p>
+          <button class="mt-3 w-full bg-green-600 text-white py-1.5 rounded-full text-sm hover:bg-green-700 transition">Add to Cart</button>
+        </div>
+      
+        <div class="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition cursor-pointer">
+          <img src="https://cdn.pixabay.com/photo/2021/04/26/09/47/medicine-6209314_1280.jpg" alt="Cough Syrup 100ml" class="w-full h-32 object-cover rounded mb-3" />
+          <h3 class="text-sm font-semibold text-gray-700">Cough Syrup 100ml</h3>
+          <p class="text-green-600 font-semibold mt-1">₹90 <span class="line-through text-gray-400 text-xs ml-1">₹120</span></p>
+          <button class="mt-3 w-full bg-green-600 text-white py-1.5 rounded-full text-sm hover:bg-green-700 transition">Add to Cart</button>
+        </div>
+      
+        <div class="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition cursor-pointer">
+          <img src="https://cdn.pixabay.com/photo/2016/03/27/21/14/pills-1284503_1280.jpg" alt="Vitamin C Tablets" class="w-full h-32 object-cover rounded mb-3" />
+          <h3 class="text-sm font-semibold text-gray-700">Vitamin C Tablets</h3>
+          <p class="text-green-600 font-semibold mt-1">₹150 <span class="line-through text-gray-400 text-xs ml-1">₹180</span></p>
+          <button class="mt-3 w-full bg-green-600 text-white py-1.5 rounded-full text-sm hover:bg-green-700 transition">Add to Cart</button>
+        </div>
+      
+        <div class="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition cursor-pointer">
+          <img src="https://cdn.pixabay.com/photo/2014/04/02/10/01/drugs-305224_1280.png" alt="Antacid Tablets" class="w-full h-32 object-cover rounded mb-3" />
+          <h3 class="text-sm font-semibold text-gray-700">Antacid Tablets</h3>
+          <p class="text-green-600 font-semibold mt-1">₹75 <span class="line-through text-gray-400 text-xs ml-1">₹90</span></p>
+          <button class="mt-3 w-full bg-green-600 text-white py-1.5 rounded-full text-sm hover:bg-green-700 transition">Add to Cart</button>
+        </div>
+      </section>
+      
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t mt-12">
+    <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-sm text-gray-600">
+      
+      <div>
+        <h2 class="text-xl font-bold text-green-600 mb-2">MediKart</h2>
+        <p>Your trusted online pharmacy. Fast and safe delivery at your doorstep.</p>
+      </div>
+      
+      <div>
+        <h3 class="text-md font-semibold text-gray-800 mb-3">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-green-600">About Us</a></li>
+          <li><a href="#" class="hover:text-green-600">Contact</a></li>
+          <li><a href="#" class="hover:text-green-600">Privacy Policy</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="text-md font-semibold text-gray-800 mb-3">Customer Support</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-green-600">Help Center</a></li>
+          <li><a href="#" class="hover:text-green-600">Returns</a></li>
+          <li><a href="#" class="hover:text-green-600">Track Order</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="text-md font-semibold text-gray-800 mb-3">Follow Us</h3>
+        <div class="flex space-x-4">
+          <a href="#" class="hover:text-green-600">Facebook</a>
+          <a href="#" class="hover:text-green-600">Instagram</a>
+          <a href="#" class="hover:text-green-600">Twitter</a>
+        </div>
+      </div>
+  
+    </div>
+  
+    <div class="border-t text-center py-4 text-xs text-gray-400">
+      &copy; 2025 MediKart. All rights reserved.
+    </div>
+  </footer>
+  
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Detail - MediKart</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+
+  <!-- Top Navbar -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
+
+      <!-- Logo -->
+      <a href="index.html" class="text-xl font-bold text-green-600">MediKart</a>
+
+      <!-- Search Bar -->
+      <div class="hidden md:flex flex-1 mx-6">
+        <input
+          type="text"
+          placeholder="Search for medicines..."
+          class="w-full border rounded-full py-2 px-4 focus:ring-2 focus:ring-green-500 focus:outline-none"
+        />
+      </div>
+
+      <!-- Cart + Login -->
+      <div class="flex items-center space-x-4">
+
+        <!-- Cart Icon -->
+        <a href="#" class="relative text-gray-600 hover:text-green-600">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M3 3h2l.4 2M7 13h10l4-8H5.4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+            <circle cx="9" cy="19" r="1"/>
+            <circle cx="20" cy="19" r="1"/>
+          </svg>
+          <span class="absolute -top-1 -right-1 bg-green-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">2</span>
+        </a>
+
+        <!-- Login Button -->
+        <a href="#" class="text-sm font-semibold bg-green-600 text-white px-4 py-1.5 rounded-full hover:bg-green-700 transition">
+          Login
+        </a>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+  
+    <!-- Product Image -->
+    <div>
+      <img id="productImage" 
+           class="w-full h-[300px] object-cover rounded-lg shadow" 
+           alt="Product Image" />
+    </div>
+  
+    <!-- Product Details -->
+    <div class="md:pl-8">
+      <h1 id="productName" class="text-2xl font-semibold text-gray-800 mb-2">Loading...</h1>
+      <p id="productBrand" class="text-sm text-gray-500 mb-4">Brand: -</p>
+  
+      <!-- Price & Add Button Row -->
+      <div class="flex items-start md:items-center justify-between mb-2">
+        <!-- Price + Discount -->
+        <div class="flex items-center space-x-3">
+          <p id="productPrice" class="text-2xl font-bold text-green-600">₹--</p>
+          <p id="productOldPrice" class="line-through text-gray-400">₹--</p>
+          <span id="productDiscount" class="text-sm text-green-600 bg-green-100 px-2 py-0.5 rounded-full hidden">--% OFF</span>
+        </div>
+
+        <!-- Inline Add button for md+ screens -->
+        <button id="addToCartBtn" class="hidden md:block bg-green-600 text-white px-6 py-2 rounded-md font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+          Add
+        </button>
+      </div>
+
+      <!-- Availability -->
+      <p class="text-sm text-gray-600 mb-2">
+        Availability: <span id="availabilityStatus" class="font-medium text-green-600">In Stock</span>
+      </p>
+
+      <p class="text-sm text-gray-600 mb-4">Inclusive of all taxes</p>
+  
+      <div class="mb-4">
+        <p class="text-sm font-medium text-gray-700 mb-1">Delivery</p>
+        <p class="text-sm text-gray-600">Delivered in <span class="font-medium text-green-600">30 mins</span></p>
+      </div>
+  
+      <!-- Full-width Add button on small screens -->
+      <button id="addToCartBtnMobile" class="mt-4 w-full bg-green-600 text-white px-6 py-2 rounded-md font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition md:hidden">
+        Add to Cart
+      </button>
+  
+      <hr class="my-6" />
+  
+      <div>
+        <h2 class="text-lg font-semibold text-gray-800 mb-2">Description</h2>
+        <p id="productDesc" class="text-sm text-gray-600 leading-relaxed">
+          Loading description...
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="bg-white border-t mt-12">
+    <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-sm text-gray-600">
+      <div>
+        <h2 class="text-xl font-bold text-green-600 mb-2">MediKart</h2>
+        <p>Your trusted online pharmacy. Fast and safe delivery at your doorstep.</p>
+      </div>
+      <div>
+        <h3 class="text-md font-semibold text-gray-800 mb-3">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-green-600">About Us</a></li>
+          <li><a href="#" class="hover:text-green-600">Contact</a></li>
+          <li><a href="#" class="hover:text-green-600">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-md font-semibold text-gray-800 mb-3">Customer Support</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-green-600">Help Center</a></li>
+          <li><a href="#" class="hover:text-green-600">Returns</a></li>
+          <li><a href="#" class="hover:text-green-600">Track Order</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-md font-semibold text-gray-800 mb-3">Follow Us</h3>
+        <div class="flex space-x-4">
+          <a href="#" class="hover:text-green-600">Facebook</a>
+          <a href="#" class="hover:text-green-600">Instagram</a>
+          <a href="#" class="hover:text-green-600">Twitter</a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t text-center py-4 text-xs text-gray-400">
+      &copy; 2025 MediKart. All rights reserved.
+    </div>
+  </footer>
+  
+</body>
+</html>

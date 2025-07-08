@@ -1,0 +1,22 @@
+<!-- Floating Chatbot Button -->
+<div id="chatbot-toggle" class="fixed bottom-6 right-6 z-50">
+    <button class="bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-lg">
+      💬
+    </button>
+  </div>
+  
+  <!-- Chatbot Popup -->
+  <div id="chatbot-window" class="hidden fixed bottom-24 right-6 bg-white w-80 h-96 shadow-xl rounded-lg overflow-hidden z-50 border">
+    <div class="bg-green-600 text-white px-4 py-2 flex justify-between items-center">
+      <span class="font-semibold">MediKart Assistant</span>
+      <button onclick="document.getElementById('chatbot-window').classList.add('hidden')" class="text-white text-xl leading-none">×</button>
+    </div>
+    <div class="p-4 h-72 overflow-y-auto text-sm text-gray-700" id="chatbot-messages">
+      <p class="text-gray-500 italic">How can I help you today?</p>
+    </div>
+    <div class="border-t p-2 flex">
+      <input type="text" id="chatbot-input" placeholder="Type a message..." class="flex-1 px-2 py-1 border rounded-l text-sm focus:outline-none">
+      <button onclick="sendMessage()" class="bg-green-600 text-white px-4 py-1 rounded-r">Send</button>
+    </div>
+  </div>
+  

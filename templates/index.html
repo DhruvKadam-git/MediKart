@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Medicine App Navbar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <!-- Shared auth/profile bootstrap -->
+  <script src="/js/auth.js"></script>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        
+        <!-- Left section: Logo + Location -->
+        <div class="flex items-center space-x-6">
+          <!-- Logo -->
+          <a href="#" class="text-xl font-bold text-green-600">MediKart</a>
+
+          <!-- Location -->
+          <div class="hidden md:flex items-center space-x-1 text-sm text-gray-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.05 6.05a7 7 0 119.9 0c2.73 2.73-3.95 10.68-4.95 11.68-1-1-7.68-8.95-4.95-11.68zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+            </svg>
+            <span>Select Location</span>
+          </div>
+        </div>
+
+        <!-- Center section: Search Bar -->
+        <div class="flex-1 mx-4">
+          <div class="relative">
+            <input type="text" placeholder="Search for medicines..." class="w-full border rounded-full py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-3 top-2.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.35 4.35a7.5 7.5 0 0012.3 12.3z" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Right section: Cart + Login -->
+        <div class="flex items-center space-x-4">
+          <!-- Cart Icon -->
+          <a href="#" class="relative text-gray-600 hover:text-green-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path d="M3 3h2l.4 2M7 13h10l4-8H5.4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+              <circle cx="9" cy="19" r="1"/>
+              <circle cx="20" cy="19" r="1"/>
+            </svg>
+            <span class="absolute top-0 right-0 inline-flex items-center justify-center px-1 text-xs font-bold text-white bg-green-500 rounded-full">2</span>
+          </a>
+
+          <!-- Login/Profile Avatar/Button -->
+          <a id="navUserBtn" href="#" class="flex items-center justify-center bg-green-600 text-white text-sm font-semibold w-9 h-9 rounded-full hover:bg-green-700 overflow-hidden">
+            <!-- Will be replaced with avatar or text -->
+            <span>Login</span>
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+  </nav>
+  <!-- Hero Section -->
+<section class="bg-green-50 py-10">
+  <div class="max-w-7xl mx-auto px-4 flex flex-col-reverse md:flex-row items-center justify-between">
+
+    <!-- Text content -->
+    <div class="md:w-1/2 text-center md:text-left space-y-5">
+      <h1 class="text-4xl font-extrabold text-gray-800 leading-tight">
+        Get Your Medicines <br class="hidden md:block" />
+        Delivered in <span class="text-green-600">10 Minutes</span>
+      </h1>
+      <p class="text-gray-600 text-lg">
+        Fast, trusted & reliable pharmacy delivery at your doorstep. No more waiting in queues!
+      </p>
+      <a href="#shop" class="inline-block bg-green-600 text-white px-6 py-3 rounded-full text-lg hover:bg-green-700 transition">
+        Shop Now
+      </a>
+    </div>
+
+    <!-- Hero image -->
+    <div class="md:w-1/2 mb-6 md:mb-0">
+      <img src="https://cdn.pixabay.com/photo/2017/08/06/10/36/pills-2597981_1280.jpg" alt="Medicines" class="w-full max-w-md mx-auto rounded-xl shadow-lg" />
+    </div>
+
+  </div>
+</section>
+<!-- Categories Section -->
+<section class="py-10 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Shop by Categories</h2>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+      
+      <!-- Category Card -->
+      <a href="#" class="flex flex-col items-center bg-green-50 hover:bg-green-100 rounded-xl p-4 shadow transition">
+        <img src="https://cdn-icons-png.flaticon.com/512/3209/3209265.png" alt="Fever" class="w-16 h-16 mb-2" />
+        <span class="text-sm font-medium text-gray-700">Fever</span>
+      </a>
+
+      <a href="#" class="flex flex-col items-center bg-green-50 hover:bg-green-100 rounded-xl p-4 shadow transition">
+        <img src="https://cdn-icons-png.flaticon.com/512/2921/2921823.png" alt="Cough & Cold" class="w-16 h-16 mb-2" />
+        <span class="text-sm font-medium text-gray-700">Cough & Cold</span>
+      </a>
+
+      <a href="#" class="flex flex-col items-center bg-green-50 hover:bg-green-100 rounded-xl p-4 shadow transition">
+        <img src="https://cdn-icons-png.flaticon.com/512/2921/2921859.png" alt="Diabetes" class="w-16 h-16 mb-2" />
+        <span class="text-sm font-medium text-gray-700">Diabetes Care</span>
+      </a>
+
+      <a href="#" class="flex flex-col items-center bg-green-50 hover:bg-green-100 rounded-xl p-4 shadow transition">
+        <img src="https://cdn-icons-png.flaticon.com/512/3081/3081986.png" alt="Wellness" class="w-16 h-16 mb-2" />
+        <span class="text-sm font-medium text-gray-700">Wellness</span>
+      </a>
+
+      <a href="#" class="flex flex-col items-center bg-green-50 hover:bg-green-100 rounded-xl p-4 shadow transition">
+        <img src="https://cdn-icons-png.flaticon.com/512/2921/2921835.png" alt="Pain Relief" class="w-16 h-16 mb-2" />
+        <span class="text-sm font-medium text-gray-700">Pain Relief</span>
+      </a>
+
+      <a href="#" class="flex flex-col items-center bg-green-50 hover:bg-green-100 rounded-xl p-4 shadow transition">
+        <img src="https://cdn-icons-png.flaticon.com/512/2965/2965567.png" alt="Skin Care" class="w-16 h-16 mb-2" />
+        <span class="text-sm font-medium text-gray-700">Skin Care</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+<!-- Featured Products Section -->
+<section class="py-10 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Featured Products</h2>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+
+      <!-- Product Card -->
+      <div class="bg-white p-4 rounded-xl shadow hover:shadow-md transition">
+        <img src="https://cdn.pixabay.com/photo/2017/03/07/02/49/medicine-2121532_960_720.jpg" alt="Paracetamol" class="w-full h-32 object-cover rounded-md mb-4">
+        <h3 class="text-sm font-semibold text-gray-700">Paracetamol 500mg</h3>
+        <p class="text-green-600 font-semibold mt-1">₹20 <span class="text-gray-500 line-through text-sm ml-1">₹25</span></p>
+        <button class="w-full mt-3 bg-green-600 text-white py-1.5 rounded-full text-sm hover:bg-green-700 transition">Add to Cart</button>
+      </div>
+
+      <!-- Product Card -->
+      <div class="bg-white p-4 rounded-xl shadow hover:shadow-md transition">
+        <img src="https://cdn.pixabay.com/photo/2021/04/26/09/47/medicine-6209314_1280.jpg" alt="Cough Syrup" class="w-full h-32 object-cover rounded-md mb-4">
+        <h3 class="text-sm font-semibold text-gray-700">Cough Syrup 100ml</h3>
+        <p class="text-green-600 font-semibold mt-1">₹90 <span class="text-gray-500 line-through text-sm ml-1">₹120</span></p>
+        <button class="w-full mt-3 bg-green-600 text-white py-1.5 rounded-full text-sm hover:bg-green-700 transition">Add to Cart</button>
+      </div>
+
+      <!-- Product Card -->
+      <div class="bg-white p-4 rounded-xl shadow hover:shadow-md transition">
+        <img src="https://cdn.pixabay.com/photo/2016/11/29/05/15/medicine-1869285_1280.jpg" alt="Vitamin C Tablets" class="w-full h-32 object-cover rounded-md mb-4">
+        <h3 class="text-sm font-semibold text-gray-700">Vitamin C Tablets</h3>
+        <p class="text-green-600 font-semibold mt-1">₹150 <span class="text-gray-500 line-through text-sm ml-1">₹180</span></p>
+        <button class="w-full mt-3 bg-green-600 text-white py-1.5 rounded-full text-sm hover:bg-green-700 transition">Add to Cart</button>
+      </div>
+
+      <!-- Product Card -->
+      <div class="bg-white p-4 rounded-xl shadow hover:shadow-md transition">
+        <img src="https://cdn.pixabay.com/photo/2021/06/06/21/44/syringe-6315989_1280.jpg" alt="Insulin Syringe" class="w-full h-32 object-cover rounded-md mb-4">
+        <h3 class="text-sm font-semibold text-gray-700">Insulin Syringe</h3>
+        <p class="text-green-600 font-semibold mt-1">₹45 <span class="text-gray-500 line-through text-sm ml-1">₹60</span></p>
+        <button class="w-full mt-3 bg-green-600 text-white py-1.5 rounded-full text-sm hover:bg-green-700 transition">Add to Cart</button>
+      </div>
+
+      <!-- Product Card -->
+      <div class="bg-white p-4 rounded-xl shadow hover:shadow-md transition">
+        <img src="https://cdn.pixabay.com/photo/2017/07/31/11/21/medicine-2557314_1280.jpg" alt="Skin Cream" class="w-full h-32 object-cover rounded-md mb-4">
+        <h3 class="text-sm font-semibold text-gray-700">Skin Care Cream</h3>
+        <p class="text-green-600 font-semibold mt-1">₹75 <span class="text-gray-500 line-through text-sm ml-1">₹90</span></p>
+        <button class="w-full mt-3 bg-green-600 text-white py-1.5 rounded-full text-sm hover:bg-green-700 transition">Add to Cart</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- Footer Section -->
+<footer class="bg-white border-t mt-12">
+  <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-sm text-gray-600">
+
+    <!-- Logo & Description -->
+    <div>
+      <h2 class="text-xl font-bold text-green-600 mb-2">MediKart</h2>
+      <p>Your trusted medicine delivery partner. Fast, secure and reliable delivery to your doorstep.</p>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h3 class="text-md font-semibold text-gray-800 mb-3">Quick Links</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:text-green-600">About Us</a></li>
+        <li><a href="#" class="hover:text-green-600">Contact</a></li>
+        <li><a href="#" class="hover:text-green-600">FAQs</a></li>
+        <li><a href="#" class="hover:text-green-600">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <!-- Services -->
+    <div>
+      <h3 class="text-md font-semibold text-gray-800 mb-3">Services</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:text-green-600">Order Medicines</a></li>
+        <li><a href="#" class="hover:text-green-600">Upload Prescription</a></li>
+        <li><a href="#" class="hover:text-green-600">Consult a Doctor</a></li>
+        <li><a href="#" class="hover:text-green-600">Health Tips</a></li>
+      </ul>
+    </div>
+
+    <!-- App & Social -->
+    <div>
+      <h3 class="text-md font-semibold text-gray-800 mb-3">Get the App</h3>
+      <div class="flex flex-col space-y-3">
+        <a href="#">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" class="h-10">
+        </a>
+        <a href="#">
+          <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" class="h-10">
+        </a>
+      </div>
+
+      <div class="flex space-x-4 mt-6">
+        <a href="#" class="hover:text-green-600">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path d="M22,12A10,10,0,1,0,12,22,10.01,10.01,0,0,0,22,12ZM14.85,12.35h-1.5V17h-2v-4.65H9.15v-1.7h2.2V9.25c0-1.61,1.06-2.5,2.58-2.5a9.06,9.06,0,0,1,1.59.14v1.8H14c-.72,0-.85.34-.85.84v1.32h1.7Z" />
+          </svg>
+        </a>
+        <a href="#" class="hover:text-green-600">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path d="M24,4.56a9.93,9.93,0,0,1-2.83.78A4.94,4.94,0,0,0,23.34,3a9.85,9.85,0,0,1-3.13,1.2A4.92,4.92,0,0,0,16.62,3,4.92,4.92,0,0,0,11.7,7.92a14,14,0,0,1-10.17-5.16A4.92,4.92,0,0,0,3.15,9.1,4.9,4.9,0,0,1,1,8.11v.06A4.92,4.92,0,0,0,4.92,13a4.93,4.93,0,0,1-2.22.08A4.93,4.93,0,0,0,6.29,16a9.87,9.87,0,0,1-6.11,2.1A10,10,0,0,1,0,18.08a13.94,13.94,0,0,0,7.55,2.21A13.88,13.88,0,0,0,21.5,6.31c0-.21,0-.41,0-.62A10,10,0,0,0,24,4.56Z"/>
+          </svg>
+        </a>
+        <a href="#" class="hover:text-green-600">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path d="M12,2A10,10,0,1,0,22,12,10.01,10.01,0,0,0,12,2Zm2.54,15.26H13V13.5h1.54ZM13,12.45h1.5v-.65c0-.45-.14-.76-.78-.76a1.13,1.13,0,0,0-.9.44V12.45ZM10.5,13.5h1.54v3.76H10.5ZM11.53,10a.88.88,0,1,1-.88-.88A.88.88,0,0,1,11.53,10Zm4.47,6.76h-1.3v-2.8c0-.67-.24-1.12-.82-1.12a.88.88,0,0,0-.83.6.9.9,0,0,0-.04.32v3h-1.3v-6H13v.82a1.58,1.58,0,0,1,1.44-.86c1.05,0,1.83.68,1.83,2.15Z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom footer -->
+  <div class="border-t mt-8 py-4 text-center text-xs text-gray-400">
+    &copy; 2025 MediKart. All rights reserved.
+  </div>
+</footer>
+
+  <!-- Navbar user switch script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('navUserBtn');
+      if (!btn) return;
+      const userJSON = localStorage.getItem('user');
+      if (userJSON) {
+        const user = JSON.parse(userJSON);
+        btn.href = '/userprofile';
+        // replace inner with avatar image
+        btn.innerHTML = `<img src="${user.avatar || 'https://i.pravatar.cc/150'}" alt="${user.name || 'User'}" class="w-full h-full object-cover"/>`;
+      } else {
+        btn.innerHTML = '<span>Login</span>';
+        btn.href = '/login';
+      }
+    });
+  </script>
+</body>
+</html>

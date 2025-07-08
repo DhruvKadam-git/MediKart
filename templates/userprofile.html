@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Profile - MediKart</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="/js/auth.js"></script>
+</head>
+<body class="bg-gray-50">
+  <main class="max-w-5xl mx-auto p-6">
+    <!-- Profile Header -->
+    <section class="bg-white rounded shadow p-6 mb-8 flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
+      <img id="userAvatar" src="https://i.pravatar.cc/150" alt="User Avatar" class="w-32 h-32 rounded-full object-cover" />
+      <div class="flex-1">
+        <h1 class="text-3xl font-semibold text-gray-900 user-name">John Doe</h1>
+        <p class="text-gray-600 mt-2 user-email">johndoe@example.com</p>
+        <p class="text-gray-600 mt-1 user-phone">+91 98765 43210</p>
+        <button class="mt-4 px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition font-semibold">Edit Profile</button>
+      </div>
+    </section>
+
+    <!-- My Orders -->
+    <section class="bg-white rounded shadow p-6">
+      <h2 class="text-2xl font-semibold mb-6 text-gray-800">My Orders</h2>
+      <div id="ordersContainer"></div>
+    </section>
+
+    <!-- Saved Addresses -->
+    <section class="max-w-5xl mx-auto bg-white p-6 rounded shadow mt-10">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6">Saved Addresses</h2>
+      <div id="addressContainer"></div>
+      <div class="mt-6">
+        <button class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition font-semibold">
+          + Add New Address
+        </button>
+      </div>
+    </section>
+
+    <!-- Saved Payment Methods -->
+    <section class="max-w-5xl mx-auto bg-white p-6 rounded shadow mt-10">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6">Saved Payment Methods</h2>
+      <div id="paymentContainer"></div>
+      <div class="mt-6">
+        <button class="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition font-semibold text-sm">
+          + Add New Payment Method
+        </button>
+      </div>
+    </section>
+
+    <!-- Help & Support -->
+    <section class="max-w-5xl mx-auto bg-white p-6 rounded shadow mt-10">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6">Help & Support</h2>
+      <div class="space-y-4">
+        <div class="flex justify-between items-center p-4 border border-gray-200 rounded hover:bg-gray-50 transition">
+          <div>
+            <h3 class="font-medium text-gray-900">FAQs</h3>
+            <p class="text-sm text-gray-600">Find answers to frequently asked questions.</p>
+          </div>
+          <a href="#" class="text-green-600 font-semibold hover:underline text-sm">View</a>
+        </div>
+        <div class="flex justify-between items-center p-4 border border-gray-200 rounded hover:bg-gray-50 transition">
+          <div>
+            <h3 class="font-medium text-gray-900">Contact Support</h3>
+            <p class="text-sm text-gray-600">Need help? Reach out to our support team.</p>
+          </div>
+          <a href="mailto:support@medikart.com" class="text-green-600 font-semibold hover:underline text-sm">Email</a>
+        </div>
+        <div class="flex justify-between items-center p-4 border border-gray-200 rounded hover:bg-gray-50 transition">
+          <div>
+            <h3 class="font-medium text-gray-900">Return & Refund Policy</h3>
+            <p class="text-sm text-gray-600">Learn about our easy return process.</p>
+          </div>
+          <a href="#" class="text-green-600 font-semibold hover:underline text-sm">View</a>
+        </div>
+      </div>
+      <div class="mt-8 text-center">
+        <p class="text-sm text-gray-600 mb-3">Didn't find what you're looking for?</p>
+        <button class="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition font-semibold text-sm">
+          Submit a Request
+        </button>
+      </div>
+      <div class="mt-10 border-t pt-6 text-sm text-gray-600">
+        <p class="mb-1"><strong>Call us:</strong> +91 1800-123-4567 (9 AM – 9 PM, Mon–Sat)</p>
+        <p><strong>Email:</strong> help@medikart.com</p>
+      </div>
+    </section>
+
+    <!-- Logout Section -->
+    <section class="max-w-5xl mx-auto bg-white p-6 rounded shadow mt-10 text-center">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Log Out</h2>
+      <p class="text-gray-600 mb-6">You are currently signed in as <span class="font-medium text-gray-900 user-email">john.doe@example.com</span>.</p>
+      <button id="logoutBtn" class="px-6 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition font-semibold">
+        Logout
+      </button>
+    </section>
+  </main>
+  <script src="/js/userprofile.js"></script>
+</body>
+</html>
